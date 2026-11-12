@@ -125,7 +125,10 @@ def test_database_connection_closes_after_context(tmp_path):
 def test_diagnostics_excludes_user_data_secrets_and_raw_logs(tmp_path):
     db=tmp_path/'d.db';a=base(db);upsert_post(db,a,'私密标题-SECRET','private-id',metrics={'views':1})
     local=tmp_path/'local';local.mkdir()
-    (local/'sync_status.json').write_text(json.dumps({'state':'error','count':3,'uid':'SECRET-USER','error':'Bearer SECRET-TOKEN','coverage':{'views':2,'SECRET-KEY':123}}))
+    (local/'sync_status.json').write_text(json.dumps({
+        'state':'error','count':3,'uid':'SECRET-USER','info':'已暂停',
+        'error':'Bearer SECRET-TOKEN','coverage':{'views':2,'SECRET-KEY':123},
+    },ensure_ascii=False),encoding='utf-8')
     data=diagnostics(db,tmp_path).decode()
     assert 'SECRET' not in data and 'private-id' not in data
     assert json.loads(data)['jobs']['sync_status.json']['count']==3

@@ -34,7 +34,7 @@ def test_true_dom_statistics_parsed_and_saved_through_capture_to_database(tmp_pa
     node=shutil.which('node')
     if not node:pytest.skip('DOM regression requires Node')
     script='''const c={innerText:'平均浏览图片数\\n3\\n划走率\\n24.44%\\n文案展开率\\n0.09%',querySelector:s=>s.includes('cover')?{style:{},querySelectorAll:()=>[{innerText:'置顶'},{innerText:'3张'}],querySelector:()=>null}:s.includes('title')?{innerText:'图文测试'}:s.includes('status')?{innerText:'已发布'}:null};const document={querySelectorAll:()=>[c]};console.log(JSON.stringify(('''+DY_VISIBLE+''')()[0]));'''
-    card=json.loads(subprocess.run([node,'-e',script],check=True,text=True,capture_output=True).stdout)
+    card=json.loads(subprocess.run([node,'-e',script],check=True,encoding='utf-8',capture_output=True).stdout)
     assert card['image_count']==3 and card['avg_image_views']==3
     assert card['swipe_away_rate']==.2444 and card['text_expand_rate']==.0009
     row=dict(video_id='7412345678901234567',title='图文测试',cover_url='https://p3.douyinpic.com/tos/a')

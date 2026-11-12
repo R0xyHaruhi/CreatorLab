@@ -164,6 +164,6 @@ def test_browser_pipeline_auto_navigates_then_reuses_session_route_and_imports(t
     assert sync.start(db,tmp_path,account_id=aid)==0
     assert navigations==[CENTER,manager_url,manager_url]
     assert clicks==['作品管理']  # Remembered path bypasses the menu on the next run.
-    status=json.loads((tmp_path/'local'/'sync_status.json').read_text())
+    status=json.loads((tmp_path/'local'/'sync_status.json').read_text(encoding='utf-8'))
     assert status['state']=='imported' and status['count']==1 and status['coverage']['completion_rate']==1
     assert latest_posts(db)[0]['views']==100

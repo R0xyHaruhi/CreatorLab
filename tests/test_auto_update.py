@@ -141,13 +141,13 @@ def test_automatic_browser_refreshes_existing_only_and_pauses_at_login(tmp_path,
     assert fetched==[OLD]  # No newly discovered identity enters the cover pass.
     assert launch_options[0]['headless'] is True
     assert len(latest_posts(db))==1 and latest_posts(db)[0]['views']==250
-    status=json.loads((tmp_path/'local'/'sync_status.json').read_text())
+    status=json.loads((tmp_path/'local'/'sync_status.json').read_text(encoding='utf-8'))
     assert status['new_count']==0 and status['refreshed_count']==1
     assert status['list_end_reason']=='existing_targets_read' and not status['inventory_complete']
     logged_in[0]=False;ctx=Context()
     assert sync.start(db,tmp_path,account_id=aid,mode='existing')==4
     assert len(latest_posts(db))==1 and latest_posts(db)[0]['views']==250
-    assert json.loads((tmp_path/'local'/'sync_status.json').read_text())['state']=='waiting_login'
+    assert json.loads((tmp_path/'local'/'sync_status.json').read_text(encoding='utf-8'))['state']=='waiting_login'
     from creatorlab.douyin_ui import read_status
     from creatorlab.task_ui import task_status
     assert read_status(tmp_path)['state']=='waiting_login'

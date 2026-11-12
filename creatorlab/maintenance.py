@@ -154,7 +154,7 @@ def diagnostics(db,root):
         result['database']['works_by_platform']=dict(con.execute('SELECT a.platform,count(*) FROM hub_posts p JOIN hub_accounts a ON a.id=p.account_id GROUP BY a.platform'))
     for name in ('sync_status.json','bilibili_sync_status.json'):
         try:
-            data=json.loads((Path(root)/'local'/name).read_text())
+            data=json.loads((Path(root)/'local'/name).read_text(encoding='utf-8'))
             state=data.get('state')
             safe={'state':state if state in {'starting','waiting_login','collecting','recovering','details','review','imported','partial','completed','stalled','stopped','empty','error','interrupted','covers','creator'} else 'unknown'}
             safe.update({k:v for k in ('count','total','pages','details','raw_rows_seen','rejected_rows','with_cover','cover_targets','visible_list_count') if isinstance((v:=data.get(k)),int) and not isinstance(v,bool) and v>=0})

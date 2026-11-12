@@ -62,7 +62,7 @@ def test_false_source_end_does_not_skip_more_ui_pages_and_complete_metrics_still
     monkeypatch.setattr('creatorlab.covers.fetch_browser_cover',fetch)
     db=tmp_path/'d.db';init_hub(db);aid=add_account(db,'douyin','one')
     assert sync.start(db,tmp_path,account_id=aid)==0
-    status=json.loads((tmp_path/'local/sync_status.json').read_text())
+    status=json.loads((tmp_path/'local/sync_status.json').read_text(encoding='utf-8'))
     assert status['count']==3 and status['list_end_reason']=='inventory_matched'
     assert status['pages']==2 and status['details']==0
     assert len(fetched)==(3 if with_covers else 0)

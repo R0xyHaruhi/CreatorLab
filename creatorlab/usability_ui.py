@@ -74,7 +74,7 @@ def maintenance_panel(db,root):
         st.info('安装已启动；安装结果可刷新下方查看。')
     import json
     try:
-        status=json.loads((Path(root)/'local'/'browser_install_status.json').read_text())
+        status=json.loads((Path(root)/'local'/'browser_install_status.json').read_text(encoding='utf-8'))
         st.caption('上次安装已中断，可重试' if status.get('state')=='installing' and not installing else status.get('info',''))
     except (OSError,ValueError):pass
     if st.button('刷新环境结果',key='environment_refresh'):st.rerun()

@@ -6,7 +6,7 @@
 
 ```bash
 python tools/release.py
-python tools/release.py --output artifacts/CreatorLab-2.6.30-beta-source
+python tools/release.py --output artifacts/CreatorLab-2.6.31-beta-source
 ```
 
 输出目录和同名ZIP只含白名单源码、公开文档、示例与必要资源，并附SHA256文件清单。工具拒绝覆盖已有输出。只上传生成的干净目录，不上传日常使用的整个项目目录。

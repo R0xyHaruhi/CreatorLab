@@ -81,7 +81,7 @@ def test_dom_fallback_can_reach_full_detail_data_without_any_api(tmp_path,monkey
     from creatorlab.bilibili_account import latest_fields
     assert cached_cover(db,'bilibili',BV)
     assert latest_fields(db,row['account_id'])['followers']['value']==1234
-    status=json.loads((tmp_path/'local'/'bilibili_sync_status.json').read_text())
+    status=json.loads((tmp_path/'local'/'bilibili_sync_status.json').read_text(encoding='utf-8'))
     assert status['radar_ready']==1 and status['with_cover']==1
 
 

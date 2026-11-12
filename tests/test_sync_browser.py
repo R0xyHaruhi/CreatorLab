@@ -37,8 +37,8 @@ def test_status_write_retries_windows_reader_lock_and_preserves_old_on_failure(t
     monkeypatch.setattr(sync.os,'replace',busy_then_replace)
     monkeypatch.setattr(sync.time,'sleep',lambda _:None)
     sync.status_write(dest,state='completed')
-    assert len(calls)==3 and json.loads(dest.read_text())['state']=='completed'
+    assert len(calls)==3 and json.loads(dest.read_text(encoding='utf-8'))['state']=='completed'
     def busy(*a):raise PermissionError('persistent reader lock')
     monkeypatch.setattr(sync.os,'replace',busy)
     with pytest.raises(PermissionError):sync.status_write(dest,state='error')
-    assert json.loads(dest.read_text())['state']=='completed' and not list(tmp_path.glob('*.tmp'))
+    assert json.loads(dest.read_text(encoding='utf-8'))['state']=='completed' and not list(tmp_path.glob('*.tmp'))

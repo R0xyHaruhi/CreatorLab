@@ -15,7 +15,7 @@ def test_source_dom_handles_pinned_badge_and_missing_image_count_badge():
     script='const cases='+json.dumps(cases,ensure_ascii=False)+''';
 const document={querySelectorAll:()=>cases.map(([badges,text])=>({innerText:text,querySelector:(sel)=>sel.includes('cover')?{style:{},querySelectorAll:()=>badges.map(t=>({innerText:t})),querySelector:()=>null}:null}))};
 console.log(JSON.stringify(('''+DY_VISIBLE+''')().map(x=>x.media_format)));'''
-    result=subprocess.run([node,'-e',script],check=True,capture_output=True,text=True)
+    result=subprocess.run([node,'-e',script],check=True,capture_output=True,encoding='utf-8')
     assert json.loads(result.stdout)==[x[2] for x in cases]
 
 

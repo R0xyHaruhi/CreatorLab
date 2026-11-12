@@ -100,5 +100,5 @@ def test_browser_pipeline_exits_after_partial_list_and_enriches_owned_details(tm
     rows=latest_posts(db)
     assert len(rows)==3 and all(r['favorites']==20 and r['shares']==5 and r['completion_rate']==.4 for r in rows)
     assert all(r['_ratio_allowed']['favorites'] for r in rows)
-    status=json.loads((tmp_path/'local'/'sync_status.json').read_text())
+    status=json.loads((tmp_path/'local'/'sync_status.json').read_text(encoding='utf-8'))
     assert status['state']=='review' and status['count']==3 and status['total']==4 and status['details']==3

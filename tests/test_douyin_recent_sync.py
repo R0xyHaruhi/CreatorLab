@@ -108,7 +108,7 @@ def test_recent_page_does_not_paginate_or_visit_details_and_new_work_is_ready(tm
     assert fetched==[NEW]
     from creatorlab.covers import cached_cover
     assert cached_cover(db,'douyin',NEW)
-    status=json.loads((tmp_path/'local'/'sync_status.json').read_text())
+    status=json.loads((tmp_path/'local'/'sync_status.json').read_text(encoding='utf-8'))
     assert status['new_count']==1 and status['count']==2 and status['pages']==1 and status['details']==0
     assert status['list_end_reason']=='first_page_saved' and not status['inventory_complete']
     posts=latest_posts(db)

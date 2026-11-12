@@ -103,7 +103,7 @@ def test_runner_two_pages_to_database_without_real_browser(tmp_path,monkeypatch)
     db=tmp_path/'d.db'
     assert run(db,tmp_path,'123')==0
     assert len(latest_posts(db))==2
-    status=json.loads((tmp_path/'local'/'bilibili_sync_status.json').read_text())
+    status=json.loads((tmp_path/'local'/'bilibili_sync_status.json').read_text(encoding='utf-8'))
     assert status['state']=='partial' and status['count']==2 and status['with_views']==2
     assert status['radar_ready']==0  # a complete listing is not complete metric collection
     assert not job_running(tmp_path)
