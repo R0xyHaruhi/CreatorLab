@@ -1,0 +1,57 @@
+name: 使用问题
+description: 报告安装、同步、分析或界面异常。
+title: "[问题] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先阅读 README 和 docs/USAGE.md。这里是公开反馈区，请勿上传数据库、登录目录、Cookie、密钥或原始日志。
+        截图请遮住昵称、作品标题、ID、链接和不想公开的指标。需要诊断时，使用应用“备份与诊断”生成的脱敏报告。
+  - type: input
+    id: version
+    attributes:
+      label: CreatorLab版本
+      description: 位于页面标题下方；无法启动时请说明下载的版本。
+      placeholder: vX.Y.Z Beta
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 出现问题的位置
+      options:
+        - 安装或启动
+        - 抖音同步或自动更新
+        - B站导入或补采
+        - 战力图或作品分析
+        - 创作方案或复盘
+        - 其他界面问题
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 系统与浏览器
+      placeholder: 例如 Windows 11、Python 3.12、Edge
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 如何复现
+      description: 按顺序描述点击和操作，不需要填写账号或作品ID。
+      placeholder: "1. 打开哪个页面\n2. 点击哪个按钮\n3. 出现什么情况"
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 预期结果与实际结果
+      description: 如显示暂停、待确认或错误提示，请描述提示文字。
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: 脱敏信息（选填）
+      description: 可附脱敏诊断或已遮挡个人信息的截图。不要上传原始日志、完整备份或浏览器会话。

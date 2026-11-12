@@ -1,0 +1,26 @@
+name: 改进建议
+description: 描述个人创作中遇到的问题和希望改进的使用方式。
+title: "[建议] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        CreatorLab当前聚焦抖音与B站个人创作者。请描述使用场景，无需提供账号、作品明细或私人数据。
+  - type: textarea
+    id: problem
+    attributes:
+      label: 现在遇到什么困难
+      description: 希望完成什么事，目前卡在哪一步？
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 希望怎样改进
+      description: 描述理想操作或结果；也可只描述问题，不必提供技术方案。
+    validations:
+      required: false
+  - type: textarea
+    id: workaround
+    attributes:
+      label: 目前的替代办法（选填）

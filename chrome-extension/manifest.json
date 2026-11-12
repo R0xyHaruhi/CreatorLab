@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "CreatorLab 抖音数据同步助手",
+  "version": "0.9.1",
+  "description": "经用户主动同意，观察当前抖音创作者中心已接收到的作品列表响应，跨页累计并导入本机。",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "debugger",
+    "tabs"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:8765/*"
+  ],
+  "action": {
+    "default_title": "导入抖音作品",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "network.js"
+  }
+}

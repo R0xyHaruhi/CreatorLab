@@ -1,0 +1,36 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><style>
+body{width:360px;padding:16px;font:14px system-ui,sans-serif;color:#17202a;background:#f8fafc}h2{margin:0 0 8px;font-size:18px}.muted{font-size:12px;color:#607080;line-height:1.5}label{font-size:12px;font-weight:600;display:block;margin-top:10px}input{width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:8px;padding:9px;margin-top:4px;background:white}button{width:100%;border:0;background:#2563eb;color:white;padding:11px;border-radius:8px;margin-top:12px;cursor:pointer}button.secondary{background:#e2e8f0;color:#111827}#status{white-space:pre-wrap;font-size:12px;margin-top:8px}small{color:#64748b}
+#batchList{max-height:280px;overflow:auto;background:white;border:1px solid #d4dae4;border-radius:8px;padding:8px;margin-top:8px} .item{padding:8px;border-bottom:1px solid #eee}.item input[type=checkbox]{width:auto;margin-right:8px}.item small{display:block;margin-top:4px}#batchSection{border-bottom:2px solid #cbd5e1;padding-bottom:16px;margin-bottom:12px}
+</style></head><body>
+<h2>🎬 CreatorLab 导入助手 v0.9.1</h2>
+<div id="networkSection" style="background:#eaf2ff;border:1px solid #b9d0fa;border-radius:10px;padding:12px;margin-bottom:14px">
+<strong>⚡ 跨页同步（推荐）</strong>
+<div class="muted">只监听当前抖音创作者中心标签页已经返回的作品数据。不会读取 Cookie、密码，也不会主动调用抖音接口。启动后刷新或正常翻页，数据自动累计。Chrome 会显示调试提示，这是网络读取所需权限。</div>
+<button id="netStart">① 开始跨页采集</button>
+<button id="netAuto" class="secondary">尝试自动连续翻页（实验）</button>
+<button id="netPauseAuto" class="secondary">停止自动翻页（保留已采数据）</button>
+<button id="netStop" class="secondary">暂停采集</button>
+<div id="netStatus" class="muted" style="margin:9px 0">尚未启动</div>
+<button id="netRefresh" class="secondary">刷新采集进度</button>
+<div id="netPreview" class="muted"></div>
+<button id="netSend">② 确认并导入已采集作品</button>
+<button id="netClear" class="secondary">清空当前采集记录</button>
+<div class="muted">如未继续增加数量，请回到后台向下滚动或切换下一页。暂停后数据保留，重新开始可继续累计。自动翻页为实验功能：仅操作网页上的翻页/滚动控件，最多 110 次界面操作；连续无新作品才停止，并显示原因。仅操作页面已有的滚动/翻页控件，不保证获取全部作品。</div>
+</div><div id="batchSection"><strong>📦 批量导入作品（推荐）</strong>
+<div class="muted">先打开抖音创作者中心 → 内容管理。只读取当前页面已经加载的作品，翻页后可以再读取下一批。导入前请人工核对标题和数字。</div>
+<button id="batchRead">① 批量读取当前页面</button>
+<div id="batchSummary" class="muted"></div><div id="batchList"></div>
+<button id="batchSend">② 确认并批量保存</button></div><div class="muted">单条作品仍可使用下方功能：在作品管理页点击「点选一条作品」，然后在网页上点击对应作品的数据区域；重新打开扩展核对。无法自动获得链接时请自行复制该视频链接。</div>
+<button id="pick">① 在页面点选一条作品（推荐）</button>
+<button id="read" class="secondary">或者：读取已选中的作品文字</button>
+<label>作品链接 <input id="url" placeholder="https://www.douyin.com/video/..."></label>
+<label>作品备注名（选填）<input id="name" placeholder="如：长门有希变装"></label>
+<label>播放量 <input id="views" placeholder="未获取请留空" inputmode="numeric"></label>
+<label>点赞量 <input id="likes" placeholder="未获取请留空" inputmode="numeric"></label>
+<label>评论量 <input id="comments" placeholder="未获取请留空" inputmode="numeric"></label>
+<label>分享量 <input id="shares" placeholder="未获取请留空" inputmode="numeric"></label>
+<label>本地连接密钥 <input id="token" type="password" placeholder="在 CreatorLab 左侧复制"></label>
+<button id="verifyBridge" class="secondary">🔎 测试本地连接 / 检查密钥</button><div id="bridgeStatus" class="muted" role="status"></div>
+<div class="muted">页面结构会变化，自动识别可能失败；无法确认的指标会保留为空。不会读取密码、Cookie、隐藏接口或粉丝留存等私有指标。</div>
+<button id="send">② 核对后导入 CreatorLab</button><div id="status" role="status"></div>
+<script src="popup.js"></script></body></html>

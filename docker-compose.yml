@@ -1,0 +1,7 @@
+services:
+  clab:
+    build: .
+    ports: ["127.0.0.1:8501:8501"]
+    volumes: ["clab-data:/data"]
+volumes:
+  clab-data:

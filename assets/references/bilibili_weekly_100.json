@@ -1,0 +1,22 @@
+{
+  "id": "bilibili-weekly-292-391-v1",
+  "platform": "bilibili",
+  "scope": "每周必看精选样本",
+  "issue_min": 292,
+  "issue_max": 391,
+  "issues": 100,
+  "entries": 4620,
+  "videos": 4600,
+  "exclusions": 20,
+  "exclusion_reasons": {
+    "bangumi_series_not_comparable": 10,
+    "redirected_to_homepage": 2,
+    "video_not_found": 8
+  },
+  "tagged_videos": 4539,
+  "observed_from": "2026-11-03T01:12:47.597049+00:00",
+  "observed_to": "2026-11-03T06:47:36.078272+00:00",
+  "counter_window": "采集时累计值，非入选当周数据",
+  "is_sitewide": false,
+  "sha256": "232619b840daffdec715edbee9f3f62110902bcf565c48ede436cde2aee69968"
+}

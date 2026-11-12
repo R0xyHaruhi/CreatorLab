@@ -1,0 +1,20 @@
+name: Local checks
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.12']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m compileall -q creatorlab app_pages tools app.py bootstrap.py
+      - run: python tools/release.py --tracked
+      - run: python -m pytest -q
